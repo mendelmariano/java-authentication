@@ -1,4 +1,4 @@
-package com.novidades.gestaodeprojetos.service;
+package com.novidades.gestaodeprojetos.security;
 
 import java.util.Date;
 import java.util.Optional;
@@ -41,7 +41,7 @@ public class JWTService {
             .setSubject(usuario.getId().toString())
             .setIssuedAt(new Date())
             .setExpiration(dataExpiracao)
-            .signWith(SignatureAlgorithm.ES512, chavePrivadaJWT)
+            .signWith(SignatureAlgorithm.HS256, chavePrivadaJWT)
             .compact();
     }
 
@@ -62,6 +62,7 @@ public class JWTService {
             return Optional.ofNullable(Long.parseLong(claims.getSubject()));
 
         }catch(Exception e) {
+            // Se não encontrar nada devolve um optional 
             return Optional.empty();
         }
     }

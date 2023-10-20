@@ -12,6 +12,8 @@ import javax.persistence.SequenceGenerator;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @SequenceGenerator(name = "generator_usuario", sequenceName = "sequence_usuario", initialValue = 1, allocationSize = 1)
 public class Usuario implements UserDetails {
@@ -80,30 +82,35 @@ public class Usuario implements UserDetails {
     //Daqui pra baixo é implementação do userDetails
 
     @Override
+    @JsonIgnore
     public Collection<? extends GrantedAuthority> getAuthorities() {
         // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getAuthorities'");
+        return null;
     }
 
     @Override
+    @JsonIgnore
     public String getPassword() {
         // TODO Auto-generated method stub
         return senha;
     }
 
     @Override
+    @JsonIgnore
     public String getUsername() {
         // TODO Auto-generated method stub
         return email;
     }
 
     @Override
+    @JsonIgnore
     public boolean isAccountNonExpired() {
         // TODO Auto-generated method stub
         return true;
     }
 
     @Override
+    @JsonIgnore
     public boolean isAccountNonLocked() {
         // TOD Auto-generated method stub
         return true;
@@ -111,6 +118,7 @@ public class Usuario implements UserDetails {
     }
 
     @Override
+    @JsonIgnore
     public boolean isCredentialsNonExpired() {
         // TODO Auto-generated method stub
         return true;
@@ -118,6 +126,7 @@ public class Usuario implements UserDetails {
     }
 
     @Override
+    @JsonIgnore
     public boolean isEnabled() {
         return true;
     }
